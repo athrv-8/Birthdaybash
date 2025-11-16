@@ -1,56 +1,143 @@
-<!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday ❤️</title>
+
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            background: #fce4ec;
+            overflow-x: hidden;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            transform: rotate(45deg);
+            animation: float 6s linear infinite;
+            opacity: 0.5;
+            border-radius: 3px;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            border-radius: 50%;
+        }
+        .heart:before { top: -10px; left: 0; }
+        .heart:after { left: -10px; top: 0; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+            100% { transform: translateY(-800px) rotate(45deg); opacity: 0; }
+        }
+
+        /* Main Section */
+        .container {
             text-align: center;
-            color: #fff;
+            padding: 100px 20px;
         }
+
         h1 {
-            margin-top: 50px;
-            font-size: 40px;
+            font-size: 45px;
+            color: #e91e63;
+            animation: fadeIn 2s;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .card {
-            margin: 30px auto;
-            width: 320px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
+            margin: auto;
+            width: 90%;
+            max-width: 380px;
+            background: white;
+            padding: 25px;
             border-radius: 20px;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            animation: fadeIn 3s;
         }
-        img {
-            width: 250px;
-            border-radius: 20px;
+
+        .card img {
+            width: 100%;
+            border-radius: 15px;
         }
-        p {
+
+        .msg {
             font-size: 18px;
+            margin-top: 15px;
+            color: #555;
+            animation: fadeIn 4s;
         }
+
+        /* Button */
         button {
-            padding: 12px 25px;
+            margin-top: 25px;
+            padding: 12px 22px;
+            font-size: 18px;
+            background: #e91e63;
+            color: white;
             border: none;
             border-radius: 30px;
-            background: #ff0066;
-            color: white;
-            font-size: 18px;
-            margin-top: 20px;
+            cursor: pointer;
+            animation: fadeIn 5s;
         }
+
+        button:hover {
+            background: #d81b60;
+        }
+
     </style>
 </head>
 <body>
-    <h1>🎉 Happy Birthday ❤️</h1>
 
-    <div class="card">
-        <img src="YOUR_IMAGE_LINK" alt="">
-        <p>Wish you a very Happy Birthday!  
-           You are super special… and this website is just for you ❤️🥺</p>
+    <audio autoplay loop>
+        <source src="https://cdn.pixabay.com/audio/2023/03/13/audio_7a7b351b1e.mp3">
+    </audio>
+
+    <script>
+        // floating hearts generator
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+
+    <div class="container">
+        <h1>🎉 Happy Birthday ❤️</h1>
+
+        <div class="card">
+            <img src="YOUR_IMAGE_LINK" alt="">
+            <p class="msg">
+                On your special day…  
+                I just want to say you are truly amazing 💖  
+                I hope this little surprise makes you smile 😊✨  
+            </p>
+        </div>
+
+        <button onclick="alert('I hope this made your day special ❤️😊')">
+            Tap Me 😄
+        </button>
     </div>
 
-    <button onclick="alert('Hope this made you smile ❤️😊')">Tap Me 😊</button>
 </body>
 </html>
